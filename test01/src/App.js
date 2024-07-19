@@ -1,25 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+function Color() {
+  const colors = ['red', 'green', 'blue'];
+  const [color, setColor] = useState('white');
+  const [colorHistory, setColorHistory] = useState([]);
+
+  const handleClick = (color) => {
+    setColor(color);
+    setColorHistory([color, ...colorHistory]);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      {colors.map((color) => (
+        <button
+          key={color}
+          onClick={() => handleClick(color)}
+          style={{backgroundColor: color, color: 'white', padding: '15px 25px', border: 'none', cursor: 'pointer'}}
         >
-          Learn React
-        </a>
-      </header>
+        </button>
+      ))}
+      <div className="color-box" style={{backgroundColor: color, width: '100px', height: '100px', marginTop: '20px'}}></div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>ครั้งที่</th>
+            <th>สี</th>
+          </tr>
+        </thead>
+        <tbody>
+          {colorHistory.map((color, index) => (
+            <tr key={index}>
+              <td>{index+1}</td>
+              <td>{color}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
 
-export default App;
+export default Color;
