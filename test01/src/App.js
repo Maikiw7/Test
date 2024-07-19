@@ -16,7 +16,7 @@ function Color() {
         <button
           key={color}
           onClick={() => handleClick(color)}
-          style={{backgroundColor: color, color: 'white', padding: '15px 25px', border: 'none', cursor: 'pointer'}}
+          style={{backgroundColor: color, color: 'white', margin: '5px',padding: '15px 25px', border: 'none', cursor: 'pointer'}}
         >
         </button>
       ))}
